@@ -1,2 +1,2 @@
 # terraform-IaC
-Terraform 
+Terraform Practise
