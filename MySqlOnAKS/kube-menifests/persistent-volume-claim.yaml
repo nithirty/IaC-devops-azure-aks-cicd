@@ -9,4 +9,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   StorageClass: managed-premium-retain-StorageClass
-     
+  #To Move to Managed Storage Class use below and delete the storage-class yaml
+  #StorageClass: managed-premium   
