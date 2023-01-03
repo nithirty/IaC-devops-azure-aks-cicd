@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-clusterIP-service
+spec:
+  selector:
+    # POD Lable 
+    app: mysql
+  ports:
+  - port: 3306
+  clusterIP: None # Using POD IP 

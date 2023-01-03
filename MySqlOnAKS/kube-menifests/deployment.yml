@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mysqlusermgmt
+  template:
+    metadata:
+      labels:
+        app: mysqlusermgmt
+    spec:
+      volumes:
+          - name: mysql-persistent-storage
+            persistentVolumeClaim:
+              claimName: azure-managed-disc-pvc #Copy Name From persistent-volume-claim file
+          - name: usermanagment-dbcreation-script 
+            configMap:
+              name : usermanagment-dbcreation-script #Copy Name From Configmap file     
+      containers:
+        - name: mysql
+          image: mysql:5.6
+          env:
+            - name  :  MYSQL_ROOT_PASSOWRD
+              value :  dbpassword11
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+          - containerPort: 3306
+            name :  mysql
+            # Azure Disk Map 
+          volumeMounts:
+            - name : mysql-persistent-storage
+              mountPath: /var/lib/mysql
+            - name : usermanagment-dbcreation-script
+              mountPath: /docker-enctrypoint-initdb.d  # Refere for docker hub mysql continer doc 
+
+      
+
+
