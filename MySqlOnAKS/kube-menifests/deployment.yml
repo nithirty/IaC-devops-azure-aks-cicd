@@ -27,6 +27,11 @@ spec:
           env:
             - name  :  MYSQL_ROOT_PASSOWRD
               value :  dbpassword11
+              # Use Of Secret Object 
+              #valueFrom:
+                #secretKeyRef:
+                  #name: mysqlsecrets ## Refer Secrte File
+                  #key: db-password
           resources:
             limits:
               memory: "128Mi"
@@ -40,6 +45,7 @@ spec:
               mountPath: /var/lib/mysql
             - name : usermanagment-dbcreation-script
               mountPath: /docker-enctrypoint-initdb.d  # Refere for docker hub mysql continer doc 
+
 
       
 
