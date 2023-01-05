@@ -19,6 +19,3 @@
     - We can define routing rules based on URI , Hostname in ingress menifests
     - We can define SSL/TLS related info
 
-
-    IngressUseCase01.png
-    IngressUseCase02.png
